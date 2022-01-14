@@ -17,5 +17,5 @@ Pre-requisite: Install Xcode
 
 Pre-requisite: [Install Mint 🌱](https://github.com/yonaskolb/Mint#installing)
 
-1. `$ mint install sja26/WordleHelperSwift@1.0.0`
+1. `$ mint install sja26/WordleHelperSwift@1.0.1`
 1. `$ mint run WordleHelper`
