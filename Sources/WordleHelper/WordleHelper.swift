@@ -45,11 +45,13 @@ final class WordleHelper {
         let g5 = getGreenCharInput(position: 5, prevGreenChar: prevGreenChar5)
         let enterGreyCharsText = " Enter grey characters\(prevExcludedChars.isEmpty ? ": " : " [\(String(prevExcludedChars))]: ")"
         print(enterGreyCharsText.lightBlack, terminator: "")
-        guard let exclude = readLine()?.lowercased() else { exit(0) }
-        let excludedChars = exclude.isEmpty ? prevExcludedChars : Array(exclude)
+        guard let greyChars = readLine()?.lowercased() else { exit(0) }
+        let greenChars = [g1, g2, g3, g4, g5]
+        let greyCharsExcludingGreen = Set(Array(greyChars)).subtracting(Set(greenChars.compactMap { $0 }))
+        let excludedChars = greyChars.isEmpty ? prevExcludedChars : Array(greyCharsExcludingGreen)
         
         //Perform search
-        try await search(greenChars: [g1, g2, g3, g4, g5], excludedChars: excludedChars)
+        try await search(greenChars: greenChars, excludedChars: excludedChars)
         
         //Repeat
         searchCount += 1
